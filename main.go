@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"time"
 	"net/http"
 	"encoding/json"
 	"github.com/gorilla/handlers"
@@ -14,6 +15,7 @@ type Stock struct {
 	Item string `json:"item"`
 	Store string `json:"store"`
 	Location string `json:"location"`
+	CreatedAt int64 `json:"createdAt"`
 }
 
 var Stocks []Stock
@@ -41,9 +43,9 @@ func handleRequests() {
 
 func main() {
 	Stocks = []Stock {
-		Stock { Id: 1, Item: "Toilet Paper", Store: "Sacramento Co-op", Location: "2820 R St, Sacramento, CA 95816" },
-		Stock { Id: 2, Item: "Toilet Paper", Store: "Whole Foods Market", Location: "4315 Arden Way, Sacramento, CA 95864" },
-		Stock { Id: 3, Item: "Thermometer", Store: "CVS", Location: "3338 Arden Way, Sacramento, CA 95825" },
+		Stock { Id: 1, Item: "Toilet Paper", Store: "Sacramento Co-op", Location: "2820 R St, Sacramento, CA 95816", CreatedAt: time.Now().AddDate(0, 0, -1).UTC().Unix() * 1000 },
+		Stock { Id: 2, Item: "Toilet Paper", Store: "Whole Foods Market", Location: "4315 Arden Way, Sacramento, CA 95864", CreatedAt: time.Now().AddDate(0, 0, -3).UTC().Unix() * 1000 },
+		Stock { Id: 3, Item: "Thermometer", Store: "CVS", Location: "3338 Arden Way, Sacramento, CA 95825", CreatedAt: time.Now().UTC().Unix() * 1000 },
 	}
 
 	handleRequests()
