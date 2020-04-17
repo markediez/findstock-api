@@ -1,4 +1,4 @@
-module github.com/markediez/findstock-api
+module github.com/markediez/findsupply-api
 
 go 1.12
 
